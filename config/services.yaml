@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    coinpaprika_rates_base_url: 'https://api.coinpaprika.com/v1'
+    floatrates_rates_base_url: 'https://www.floatrates.com'
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +21,22 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+    
+    App\HttpClient\CurrencyRateSource\CoinPaprikaHttpClient:
+        arguments:
+            $httpClient: '@http_client'
+            $logger: '@logger'
+            $baseUrl: '%coinpaprika_rates_base_url%'
+
+    App\HttpClient\CurrencyRateSource\FloatRatesHttpClient:
+        arguments:
+            $httpClient: '@http_client'
+            $logger: '@logger'
+            $baseUrl: '%floatrates_rates_base_url%'
+
+    App\Service\FileService:
+        arguments:
+            $filePath: '%kernel.project_dir%/var/%s.json'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

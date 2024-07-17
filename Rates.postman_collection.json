@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "d366736c-d76e-4bf5-8bd2-4ed4a842aba8",
+		"name": "Rates",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3707869"
+	},
+	"item": [
+		{
+			"name": "all rates by currency",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rates/:currencyCode",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rates",
+						":currencyCode"
+					],
+					"variable": [
+						{
+							"key": "currencyCode",
+							"value": "EUR"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "convert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/rates/convert?amount=1&from=CHF&to=KZT",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rates",
+						"convert"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "1"
+						},
+						{
+							"key": "from",
+							"value": "CHF"
+						},
+						{
+							"key": "to",
+							"value": "KZT"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}

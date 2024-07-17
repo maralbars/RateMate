@@ -11,6 +11,8 @@ framework:
 
     ide: vscode
 
+    error_controller: 'App\Controller\ExceptionController::showException'
+
 when@test:
     framework:
         test: true
